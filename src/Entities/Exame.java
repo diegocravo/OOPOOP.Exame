@@ -12,6 +12,10 @@ public class Exame {
         this.nivelGlicose = nivelGlicose;
     }
 
+    public void setNivelGlicose(int nivelGlicose) {
+        this.nivelGlicose = nivelGlicose;
+    }
+
     public String obterDiagnostico(){
         int nivelGlicose = this.nivelGlicose;
         String resultado;
