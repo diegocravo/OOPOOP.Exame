@@ -9,7 +9,7 @@ public class ExameTest {
 
     @Test
     public void obterDiagnostico() {
-        Exame exame = new Exame(01, "Sangue", 126);
+        Exame exame = new Exame(1, "Sangue", 126);
 
         assertEquals("Diabetes", exame.obterDiagnostico());
         exame.setNivelGlicose(98);

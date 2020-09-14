@@ -27,7 +27,6 @@ public class Index {
             catch (Exception e){
                 System.out.println("Código deve ser numérico.");
                 ler.next();
-                continue;
             }
         } while (continuar);
 
@@ -41,7 +40,6 @@ public class Index {
             catch (Exception e){
                 System.out.println("Entrada deve ser numérica.");
                 ler.next();
-                continue;
             }
         } while (continuar);
 
