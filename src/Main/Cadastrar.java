@@ -13,33 +13,48 @@ public class Cadastrar {
         Locale.setDefault(Locale.US);
         Scanner ler = new Scanner(System.in);
 
-        int entradaId = 0;
         int entradaNivelGlicose = 0;
         boolean continuar = true;
+        boolean continue1;
 
-        System.out.println("Digite o nome do paciente: ");
-        String entradaNome = ler.nextLine();
+        Pessoa pessoa;
+        int index = -1;
+        boolean achou = false;
 
-        System.out.println("Digite o id da pessoa");
-        int entradaIdPessoa = ler.nextInt();
-        ler.nextLine();
-
-        Pessoa pessoa = new Pessoa(entradaIdPessoa, entradaNome, "Sem Diagnóstico");
-
-        System.out.println("Digite o tipo de Exame: ");
-        String entradaTipoExame = ler.nextLine();
+        int entradaIdPessoa;
 
         do {
-            try {
-                System.out.println("Digite o ID do Exame: ");
-                entradaId = ler.nextInt();
-                continuar = false;
-            }
-            catch (Exception e){
-                System.out.println("Código deve ser numérico.");
+            continue1 = true;
+            try{
+                System.out.println("Digite o id da pessoa: ");
+                entradaIdPessoa = ler.nextInt();
+
+                for (int x = 0; x < Pessoa.listaPessoas.size(); x++){
+                    if (Pessoa.listaPessoas.get(x).getIdPessoa() == entradaIdPessoa){
+                        index = x;
+                        achou = true;
+                        break;
+                    }
+                }
+                if (achou){
+                    pessoa = Pessoa.listaPessoas.get(index);
+                }else {
+                    pessoa = null;
+                    System.out.println("Pessoa não encontrada");
+                    Menu.menu();
+                }
+                continue1 = false;
+            } catch (Exception e){
+                pessoa = null;
+                System.out.println("Entrada Inválida");
                 ler.next();
             }
-        } while (continuar);
+        }while (continue1);
+
+
+        ler.nextLine();
+        System.out.println("Digite o tipo de Exame: ");
+        String entradaTipoExame = ler.nextLine();
 
         do {
             continuar = true;
@@ -54,15 +69,35 @@ public class Cadastrar {
             }
         } while (continuar);
 
-        Exame exame = new Exame(entradaId, entradaTipoExame, entradaNivelGlicose, pessoa);
+        Exame exame = new Exame(entradaTipoExame, entradaNivelGlicose, pessoa);
 
         pessoa.setDiabete(exame.obterDiagnostico());
-        Pessoa.listaPessoas.add(pessoa);
+        Pessoa.listaExamesFeitos.add(exame.getIdExame());
 
         Exame.listaExames.add(exame);
 
-        System.out.println("Exame Cadastrado com sucesso!");
+        System.out.println("Exame Cadastrado com sucesso!"
+                            + "\nId Exame Cadastrado: "
+                            + exame.getIdExame());
 
+    }
+
+    public  static void cadastrarPessoa(){
+
+        Locale.setDefault(Locale.US);
+        Scanner ler = new Scanner(System.in);
+
+        System.out.println("Digite o nome do paciente: ");
+        String entradaNome = ler.nextLine();
+        System.out.println("Digite o sobrenome do paciente: ");
+        String entradaSobrenome = ler.nextLine();
+
+
+        Pessoa pessoa = new Pessoa(entradaNome, entradaSobrenome, "Sem Diagnóstico");
+
+        System.out.println(pessoa.toString());
+
+        Pessoa.listaPessoas.add(pessoa);
     }
 
 }

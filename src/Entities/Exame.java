@@ -1,5 +1,6 @@
 package Entities;
 import Entities.Pessoa;
+import Main.GeradorId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +14,8 @@ public class Exame {
 
     static public List<Exame> listaExames = new ArrayList<Exame>();
 
-    public Exame(int idExame, String tipoExame, int nivelGlicose, Pessoa pessoa){
-        this.idExame = idExame;
+    public Exame(String tipoExame, int nivelGlicose, Pessoa pessoa){
+        this.idExame = GeradorId.gerarIdExame();
         this.tipoExame = tipoExame;
         this.nivelGlicose = nivelGlicose;
         this.idPessoa = pessoa.getIdPessoa();
