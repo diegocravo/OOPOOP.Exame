@@ -1,10 +1,15 @@
 package Entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Exame {
 
     private int idExame;
     private String tipoExame;
     private int nivelGlicose;
+
+    static public List<Exame> listaExames = new ArrayList<Exame>();
 
     public Exame(int idExame, String tipoExame, int nivelGlicose){
         this.idExame = idExame;
@@ -16,8 +21,11 @@ public class Exame {
         this.nivelGlicose = nivelGlicose;
     }
 
+    public int getIdExame() {
+        return idExame;
+    }
+
     public String obterDiagnostico(){
-        int nivelGlicose = this.nivelGlicose;
         String resultado;
         if (nivelGlicose > 125){
             resultado = "Diabetes";
@@ -37,7 +45,8 @@ public class Exame {
                 + "\n Nível Glicose: "
                 + nivelGlicose
                 + "\n Diagnóstico: "
-                + obterDiagnostico();
+                + obterDiagnostico()
+                + "\n";
     }
 
 }
