@@ -1,4 +1,5 @@
 package Entities;
+import Entities.Pessoa;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,13 +9,15 @@ public class Exame {
     private int idExame;
     private String tipoExame;
     private int nivelGlicose;
+    private int idPessoa;
 
     static public List<Exame> listaExames = new ArrayList<Exame>();
 
-    public Exame(int idExame, String tipoExame, int nivelGlicose){
+    public Exame(int idExame, String tipoExame, int nivelGlicose, Pessoa pessoa){
         this.idExame = idExame;
         this.tipoExame = tipoExame;
         this.nivelGlicose = nivelGlicose;
+        this.idPessoa = pessoa.getIdPessoa();
     }
 
     public void setNivelGlicose(int nivelGlicose) {

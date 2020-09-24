@@ -11,7 +11,8 @@ import static org.junit.Assert.*;
 
 public class ExameTest {
 
-    Exame exame = new Exame(1, "Sangue", 126);
+    Pessoa pessoa = new Pessoa(100, "Diego", "algumacoisa");
+    Exame exame = new Exame(1, "Sangue", 126, pessoa);
 
     @Rule
     public ErrorCollector error = new ErrorCollector();

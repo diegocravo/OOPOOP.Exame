@@ -1,6 +1,7 @@
 package Main;
 
 import Entities.Exame;
+import Entities.Pessoa;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -15,6 +16,15 @@ public class Cadastrar {
         int entradaId = 0;
         int entradaNivelGlicose = 0;
         boolean continuar = true;
+
+        System.out.println("Digite o nome do paciente: ");
+        String entradaNome = ler.nextLine();
+
+        System.out.println("Digite o id da pessoa");
+        int entradaIdPessoa = ler.nextInt();
+        ler.nextLine();
+
+        Pessoa pessoa = new Pessoa(entradaIdPessoa, entradaNome, "Sem Diagnóstico");
 
         System.out.println("Digite o tipo de Exame: ");
         String entradaTipoExame = ler.nextLine();
@@ -44,8 +54,10 @@ public class Cadastrar {
             }
         } while (continuar);
 
+        Exame exame = new Exame(entradaId, entradaTipoExame, entradaNivelGlicose, pessoa);
 
-        Exame exame = new Exame(entradaId, entradaTipoExame, entradaNivelGlicose);
+        pessoa.setDiabete(exame.obterDiagnostico());
+        Pessoa.listaPessoas.add(pessoa);
 
         Exame.listaExames.add(exame);
 
